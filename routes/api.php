@@ -1,4 +1,5 @@
 
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -74,6 +75,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Выход из аккаунта
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    // Выход со всех устройств
+    Route::post('/logout-all', [AuthController::class, 'logoutAll']);
 
     // Создание и управление собственными сборками ПК
     Route::apiResource(
