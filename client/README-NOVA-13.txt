@@ -1,0 +1,1 @@
+NOVA 13.0: 30 budget presets, category and price filters, sorting. Presets invoke existing smart builder against MySQL. Not fixed or verified builds; prices are target budgets. Install by replacing contents of client folder; keep backend and database.

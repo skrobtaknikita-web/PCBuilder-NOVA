@@ -1,0 +1,4 @@
+<?php
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;use App\Http\Requests\{RegisterRequest,LoginRequest};use App\Models\User;use Illuminate\Http\Request;use Illuminate\Support\Facades\Hash;
+class AuthController extends Controller {public function register(RegisterRequest $r){$user=User::create($r->validated());return response()->json(['user'=>$user,'token'=>$user->createToken('api')->plainTextToken],201);}public function login(LoginRequest $r){$user=User::where('email',$r->email)->first();if(!$user||!Hash::check($r->password,$user->password))return response()->json(['message'=>'Неверный email или пароль'],401);return response()->json(['user'=>$user,'token'=>$user->createToken('api')->plainTextToken]);}public function me(Request $r){return response()->json(['data'=>$r->user()]);}public function logout(Request $r){$r->user()->currentAccessToken()->delete();return response()->noContent();}}

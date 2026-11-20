@@ -1,0 +1,23 @@
+PCBuilder NOVA 4.0 — установка на Windows / Laragon
+
+ВАЖНО: Это учебный каталог. Дополнительные Demo-модели являются синтетическими примерами, не реальными товарами. Цены условные. Не публикуйте демонстрационные пароли.
+
+1. Сделайте резервную копию старой папки и базы данных.
+2. Распакуйте весь каталог pc-configurator в отдельную папку, например C:\Users\hiki\Desktop\pc-configurator-v4.
+3. Откройте Laragon, Start All.
+4. В терминале Laragon перейдите в новую папку: cd /d "C:\Users\hiki\Desktop\pc-configurator-v4"
+5. composer install
+6. Если файла .env нет: copy .env.example .env
+7. В .env установите DB_CONNECTION=mysql, DB_HOST=127.0.0.1, DB_DATABASE=pc_configurator, DB_USERNAME=root, DB_PASSWORD=
+8. php artisan key:generate (только если создаёте новый .env; для существующего проекта сохраните старый APP_KEY)
+9. php artisan migrate
+10. php artisan db:seed
+11. php artisan optimize:clear
+12. php artisan serve
+13. В другом терминале: cd /d "C:\Users\hiki\Desktop\pc-configurator-v4\client"
+14. php -S 127.0.0.1:5500
+15. Откройте http://127.0.0.1:5500
+
+НЕ выполняйте migrate:fresh, если нужны существующие данные.
+Убедитесь, что старые серверы 8000 и 5500 остановлены (Ctrl+C).
+ИИ-консультант использует существующий API /api/ai/advise, облачный режим требует действующий ключ в .env.

@@ -1,0 +1,10 @@
+flowchart TD
+ A[Веб-клиент HTML/CSS/JS] -->|HTTP JSON Bearer| B[routes/api.php]
+ B --> C[Middleware auth:sanctum + role]
+ C --> D[Form Request: валидация]
+ D --> E[API Controller]
+ E --> F[Service: бизнес-правила + транзакция]
+ F --> G[Eloquent Model]
+ G <--> H[(MySQL)]
+ E --> I[API Resource]
+ I -->|JSON HTTP| A
