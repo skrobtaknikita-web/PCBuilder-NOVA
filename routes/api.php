@@ -1,5 +1,3 @@
-
-
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -12,6 +10,7 @@ use App\Http\Controllers\Api\ConfigurationController;
 use App\Http\Controllers\Api\CompatibilityRuleController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\AiAdvisorController;
+use App\Http\Controllers\Api\ReadyBuildController;
 use App\Models\Component;
 
 /*
@@ -66,6 +65,17 @@ Route::get('/system/info', function () {
         'timestamp' => now()->toIso8601String(),
     ]);
 })->name('system.info');
+
+// Готовые сборки компьютеров
+Route::get('/ready-builds', [
+    ReadyBuildController::class,
+    'index',
+]);
+
+Route::get('/ready-builds/{slug}', [
+    ReadyBuildController::class,
+    'show',
+]);
 
 // Маршруты авторизованных пользователей
 Route::middleware('auth:sanctum')->group(function () {
